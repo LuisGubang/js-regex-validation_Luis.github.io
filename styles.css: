@@ -1,57 +1,21 @@
-/* Reset default margin & padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Centering the form in the middle */
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: #f0f0f5; /* Light gray background */
+    margin: 50px;
 }
-
-/* Form container with frame */
-.form-container {
-    background: #d0eaff; /* Light blue background */
+form {
+    max-width: 400px;
+    background: #f9f9f9;
     padding: 20px;
-    width: 350px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    border-radius: 8px;
 }
-
-/* Input fields styling */
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
 input {
+    display: block;
     width: 100%;
     padding: 8px;
+    margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
 }
-
-/* Error message styling */
-small.error {
-    color: red;
-    font-size: 12px;
-}
-
-/* Button styling */
 button {
     background: blue;
     color: white;
@@ -59,17 +23,8 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
-    font-size: 16px;
 }
-
-button:hover {
-    background: darkblue;
-}
-
-/* Success message styling */
-#successMessage {
-    color: green;
-    font-weight: bold;
-    margin-top: 10px;
+small.error {
+    color: red;
+    font-size: 12px;
 }
