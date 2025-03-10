@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validation</title>
+    <title>Form Validation with RegExp</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>User Registration</h2>
-    <form id="myForm">
-        <label>Full Name:</label>
-        <input type="text" id="fullName">
-        <small class="error" id="nameError"></small>
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <form id="myForm" novalidate>
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="John Doe">
+                <div class="error" id="nameError"></div>
+            </div>
 
-        <label>Email Address:</label>
-        <input type="email" id="email">
-        <small class="error" id="emailError"></small>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com">
+                <div class="error" id="emailError"></div>
+            </div>
 
-        <label>Phone Number:</label>
-        <input type="text" id="phone">
-        <small class="error" id="phoneError"></small>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" placeholder="1234567890">
+                <div class="error" id="phoneError"></div>
+            </div>
 
-        <label>Password:</label>
-        <input type="password" id="password">
-        <small class="error" id="passwordError"></small>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="••••••••">
+                <div class="error" id="passwordError"></div>
+            </div>
 
-        <button type="submit">Submit</button>
-    </form>
-    <p id="successMessage"></p>
-
+            <button type="submit">Register</button>
+        </form>
+        <div id="successMessage"></div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
