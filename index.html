@@ -7,28 +7,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>User Registration</h2>
-    <form id="myForm">
-        <label>Full Name:</label>
-        <input type="text" id="fullName">
-        <small class="error" id="nameError"></small>
+    <div class="form-container">
+        <h2>User Registration</h2>
+        <form id="myForm">
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input type="text" id="fullName">
+                <small class="error" id="nameError"></small>
+            </div>
 
-        <label>Email Address:</label>
-        <input type="email" id="email">
-        <small class="error" id="emailError"></small>
+            <div class="form-group">
+                <label>Email Address:</label>
+                <input type="email" id="email">
+                <small class="error" id="emailError"></small>
+            </div>
 
-        <label>Phone Number:</label>
-        <input type="text" id="phone">
-        <small class="error" id="phoneError"></small>
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="text" id="phone">
+                <small class="error" id="phoneError"></small>
+            </div>
 
-        <label>Password:</label>
-        <input type="password" id="password">
-        <small class="error" id="passwordError"></small>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="password">
+                <small class="error" id="passwordError"></small>
+            </div>
 
-        <button type="submit">Submit</button>
-    </form>
-    <p id="successMessage"></p>
-
+            <button type="submit">Submit</button>
+            <p id="successMessage"></p>
+        </form>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
