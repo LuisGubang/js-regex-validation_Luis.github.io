@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let isPasswordValid = validateInput(password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/, "At least 8 characters, one uppercase, one lowercase, and one number", document.getElementById("passwordError"));
 
         if (isNameValid && isEmailValid && isPhoneValid && isPasswordValid) {
-            successMessage.innerText = "Registration Successful!";
+            successMessage.innerText = "Form submitted successfully!";
             successMessage.style.color = "green";
         } else {
             successMessage.innerText = "";
