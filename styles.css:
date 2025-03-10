@@ -1,12 +1,18 @@
-/* General styling */
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Centering the form */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f5;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    height: 100vh; /* Full height of the screen */
 }
 
 /* Form container with frame */
@@ -19,7 +25,7 @@ body {
     text-align: center;
 }
 
-/* Styling for input fields */
+/* Input fields styling */
 .form-group {
     margin-bottom: 15px;
     text-align: left;
