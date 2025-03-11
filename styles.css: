@@ -1,51 +1,81 @@
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Reset default margin & padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Centering the form in the middle */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f0f0f5; /* Light gray background */
+}
+
+/* Form container with frame */
+.form-container {
+    background: #d0eaff; /* Light blue background */
+    padding: 20px;
+    width: 400px; /* Set a fixed width */
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Stack form elements properly */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input fields styling */
 .form-group {
     margin-bottom: 15px;
+    text-align: left;
 }
 
 label {
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
 input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
-input.invalid {
-    border: 2px solid red;
-}
-
-.error {
+/* Error message styling */
+small.error {
     color: red;
-    font-size: 0.875em;
-    height: 20px;
+    font-size: 12px;
 }
 
+/* Button styling */
 button {
-    background-color: #4CAF50;
+    background: blue;
     color: white;
-    padding: 10px 20px;
+    padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    width: 100%;
+    font-size: 16px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background: darkblue;
 }
 
+/* Success message styling */
 #successMessage {
-    margin-top: 15px;
+    color: green;
     font-weight: bold;
+    margin-top: 10px;
 }
