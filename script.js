@@ -95,3 +95,11 @@ function handleSubmit(event) {
         successMessage.style.color = 'red';
     }
 }
+document.getElementById("showPassword").addEventListener("change", function() {
+    let passwordField = document.getElementById("password");
+    if (this.checked) {
+        passwordField.type = "text"; // Show password
+    } else {
+        passwordField.type = "password"; // Hide password
+    }
+});
