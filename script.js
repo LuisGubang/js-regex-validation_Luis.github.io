@@ -1,105 +1,55 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('myForm');
+// Dynamic Greeting
+function setGreeting() {
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
+    document.getElementById('greeting').textContent = greeting;
+}
+setGreeting();
 
-    // Real-time validation event listeners
-    document.getElementById('fullName').addEventListener('input', validateName);
-    document.getElementById('email').addEventListener('input', validateEmail);
-    document.getElementById('phone').addEventListener('input', validatePhone);
-    document.getElementById('password').addEventListener('input', validatePassword);
-
-    form.addEventListener('submit', handleSubmit);
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
 });
 
-function validateName() {
-    const input = document.getElementById('fullName');
-    const error = document.getElementById('nameError');
-    const value = input.value.trim();
-    const regex = /^[A-Za-z\s]+$/;
+// Projects Filter
+const projects = [
+    { title: 'Project 1', category: 'web' },
+    { title: 'Project 2', category: 'data' }
+];
 
-    if (regex.test(value) && value !== '') {
-        error.textContent = '';
-        input.classList.remove('invalid');
-        return true;
-    } else {
-        error.textContent = 'Name must contain only letters and spaces.';
-        input.classList.add('invalid');
-        return false;
-    }
+function renderProjects(category = 'all') {
+    const filtered = category === 'all' ? projects : projects.filter(p => p.category === category);
+    const html = filtered.map(p => `<article>${p.title}</article>`).join('');
+    document.querySelector('.project-grid').innerHTML = html;
 }
 
-function validateEmail() {
-    const input = document.getElementById('email');
-    const error = document.getElementById('emailError');
-    const value = input.value.trim();
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+document.querySelectorAll('.filter-buttons button').forEach(button => {
+    button.addEventListener('click', () => renderProjects(button.dataset.category));
+});
 
-    if (regex.test(value)) {
-        error.textContent = '';
-        input.classList.remove('invalid');
-        return true;
-    } else {
-        error.textContent = 'Please enter a valid email address.';
-        input.classList.add('invalid');
-        return false;
-    }
-}
+// Form Validation
+document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Add validation logic
+});
 
-function validatePhone() {
-    const input = document.getElementById('phone');
-    const error = document.getElementById('phoneError');
-    const value = input.value.trim();
-    const regex = /^\d{10,15}$/;
+// Advanced Features: Modal and Progress Bars
+// Implement modal logic here
+// Modal Example
+document.querySelectorAll('.project-grid article').forEach(project => {
+    project.addEventListener('click', () => {
+        // Show modal with project details
+    });
+});
 
-    if (regex.test(value)) {
-        error.textContent = '';
-        input.classList.remove('invalid');
-        return true;
-    } else {
-        error.textContent = 'Phone number must be 10-15 digits.';
-        input.classList.add('invalid');
-        return false;
-    }
-}
-
-function validatePassword() {
-    const input = document.getElementById('password');
-    const error = document.getElementById('passwordError');
-    const value = input.value.trim();
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-    if (regex.test(value)) {
-        error.textContent = '';
-        input.classList.remove('invalid');
-        return true;
-    } else {
-        error.textContent = 'Password must be at least 8 characters with one uppercase, one lowercase, and one number.';
-        input.classList.add('invalid');
-        return false;
-    }
-}
-
-function handleSubmit(event) {
-    event.preventDefault();
-    const isNameValid = validateName();
-    const isEmailValid = validateEmail();
-    const isPhoneValid = validatePhone();
-    const isPasswordValid = validatePassword();
-
-    const successMessage = document.getElementById('successMessage');
-    if (isNameValid && isEmailValid && isPhoneValid && isPasswordValid) {
-        successMessage.textContent = 'Success! All fields are valid.';
-        successMessage.style.color = 'green';
-        // form.reset(); // Uncomment to reset form on success
-    } else {
-        successMessage.textContent = 'Please correct the errors in the form.';
-        successMessage.style.color = 'red';
-    }
-}
-document.getElementById("showPassword").addEventListener("change", function() {
-    let passwordField = document.getElementById("password");
-    if (this.checked) {
-        passwordField.type = "text"; // Show password
-    } else {
-        passwordField.type = "password"; // Hide password
-    }
+// Progress Bars
+const skills = [{ name: 'HTML', level: 90 }, { name: 'CSS', level: 85 }];
+skills.forEach(skill => {
+    const bar = document.createElement('div');
+    bar.className = 'progress-bar';
+    bar.style.width = '0';
+    setTimeout(() => bar.style.width = `${skill.level}%`, 100);
+    document.body.appendChild(bar);
 });
