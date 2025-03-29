@@ -3,58 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Luis Gubang Lino - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
-        <nav id="navbar">
+        <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button id="theme-toggle">Dark Mode</button></li>
             </ul>
-            <button id="theme-toggle">🌓</button>
         </nav>
     </header>
-
+    
     <section id="home">
-        <h1 id="greeting">Welcome</h1>
+        <h1>Welcome to My Portfolio</h1>
+        <p id="greeting"></p>
     </section>
-
+    
     <section id="about">
-        <img src="images/profile.jpg" alt="Profile Photo">
-        <p>About me...</p>
+        <h2>About Me</h2>
+        <img src="profile.jpg" alt="Luis Gubang Lino">
+        <p>I am Luis Gubang Lino, an Information System Technology student at United States International University of East Africa.</p>
     </section>
-
-    <section id="projects">
-        <div class="filter-buttons">
-            <button data-category="all">All</button>
-            <button data-category="web">Web</button>
-        </div>
-        <div class="project-grid"></div>
+    
+    <section id="portfolio">
+        <h2>My Projects</h2>
+        <div id="project-container"></div>
     </section>
-
+    
     <section id="blog">
-        <input type="text" id="search" placeholder="Search blogs...">
-        <div class="blog-posts"></div>
+        <h2>Blog</h2>
+        <div id="blog-container"></div>
     </section>
-
+    
     <section id="contact">
+        <h2>Contact Me</h2>
         <form id="contact-form">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <textarea required></textarea>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
             <button type="submit">Send</button>
         </form>
     </section>
-
-    <footer>
-        <p>&copy; 2024 My Portfolio</p>
-    </footer>
-
-    <script src="js/script.js"></script>
 </body>
 </html>
