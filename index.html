@@ -1,55 +1,218 @@
 <!DOCTYPE html>
+<!--
+  Main HTML document for the personal portfolio website
+  This file defines the structure of the entire website including navigation, sections, and content areas
+  The website features a responsive design with light/dark theme support and dynamic content loading
+-->
 <html lang="en">
 <head>
+    <!-- Character set and viewport configuration for proper rendering and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Gubang Lino - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <title>Luis Gubang - Personal Portfolio</title>
+
+    <!-- CSS stylesheets for base styles and responsive design -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Google Fonts integration for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome integration for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="light-mode">
+    <!-- Header section containing navigation and theme toggle -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+        <nav class="navbar">
+            <!-- Site logo/branding -->
+            <div class="logo">Luis Gubang</div>
+
+            <!-- Main navigation menu -->
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button id="theme-toggle">Dark Mode</button></li>
             </ul>
+
+            <!-- Theme toggle button for light/dark mode switching -->
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <!-- Mobile menu toggle button (hamburger menu) -->
+            <button class="mobile-menu" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
-    
-    <section id="home">
-        <h1>Welcome to My Portfolio</h1>
-        <p id="greeting"></p>
+
+    <!-- Home section - First visible section with greeting and CTA buttons -->
+    <section id="home" class="section">
+        <div class="container">
+            <!-- Dynamic greeting message that changes based on time of day -->
+            <div class="greeting-wrapper">
+                <h1 id="greeting">Welcome!</h1>
+                <p class="tagline">Full Stack Developer & Tech Enthusiast</p>
+            </div>
+
+            <!-- Call-to-action buttons -->
+            <div class="cta-buttons">
+                <a href="#projects" class="btn primary">View Projects</a>
+                <a href="#contact" class="btn secondary">Get in Touch</a>
+            </div>
+        </div>
     </section>
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <img src="profile.jpg" alt="Luis Gubang Lino">
-        <p>I am Luis Gubang Lino, an Information System Technology student at United States International University of East Africa.</p>
+
+    <!-- About section - Personal information and skills display -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <!-- Profile image container -->
+                <div class="about-image">
+                    <img src="assets/images/WhatsApp Image 2025-04-02 at 1.35.33 AM.jpeg" alt="" class="profile-img">
+                </div>
+
+                <!-- About text and skills display -->
+                <div class="about-text">
+                    <p>Hello! I'm a passionate developer with expertise in modern web technologies. I love building innovative solutions and learning new technologies.</p>
+
+                    <!-- Skills section with animated progress bars -->
+                    <div class="skills-wrapper">
+                        <h3>Skills</h3>
+                        <div class="skill-bars">
+                            <!-- HTML/CSS skill with percentage-based progress bar -->
+                            <div class="skill">
+                                <div class="skill-name">HTML/CSS</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="90"></div>
+                                </div>
+                            </div>
+
+                            <!-- JavaScript skill with percentage-based progress bar -->
+                            <div class="skill">
+                                <div class="skill-name">JavaScript</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="85"></div>
+                                </div>
+                            </div>
+
+                            <!-- React skill with percentage-based progress bar -->
+                            <div class="skill">
+                                <div class="skill-name">React</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="80"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="portfolio">
-        <h2>My Projects</h2>
-        <div id="project-container"></div>
+
+    <!-- Projects section - Portfolio showcase with filtering capabilities -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Projects</h2>
+
+            <!-- Project category filter buttons -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="app">App</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+            </div>
+
+            <!-- Projects grid for displaying portfolio items dynamically -->
+            <div class="projects-grid">
+                <!-- Projects will be dynamically loaded here via JavaScript -->
+            </div>
+        </div>
     </section>
-    
-    <section id="blog">
-        <h2>Blog</h2>
-        <div id="blog-container"></div>
+
+    <!-- Blog section - Articles and posts with search functionality -->
+    <section id="blog" class="section">
+        <div class="container">
+            <h2>Blog</h2>
+
+            <!-- Blog search functionality -->
+            <div class="blog-search">
+                <input type="text" id="blog-search-input" placeholder="Search blog posts...">
+            </div>
+
+            <!-- Blog posts grid for displaying content dynamically -->
+            <div class="blog-grid">
+                <!-- Blog posts will be dynamically loaded here via JavaScript -->
+            </div>
+        </div>
     </section>
-    
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form id="contact-form">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
+
+    <!-- Contact section - Form for user messages with validation -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Me</h2>
+
+            <!-- Contact form with client-side validation -->
+            <form id="contact-form" class="contact-form">
+                <!-- Name input field with validation -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Email input field with validation -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Message textarea with validation -->
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <span class="error-message"></span>
+                </div>
+
+                <!-- Form submission button -->
+                <button type="submit" class="btn primary">Send Message</button>
+            </form>
+        </div>
     </section>
+
+    <!-- Footer section - Social links and copyright information -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Social media links -->
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+
+                <!-- Dynamic copyright year that updates automatically -->
+                <p>&copy; <span id="current-year"></span> Luis Gubang. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox modal for project image enlargement -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Project">
+    </div>
+
+    <!-- JavaScript files for dynamic functionality -->
+    <script src="js/main.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/blog.js"></script>
 </body>
 </html>
