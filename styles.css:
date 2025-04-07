@@ -1,50 +1,675 @@
-body {
-    font-family: Arial, sans-serif;
+/*
+ * Main stylesheet for personal portfolio website
+ * This file contains core styles, theme configuration, and component-specific styling
+ * Implements CSS variables for consistent theming and easy customization
+ * Designed with a mobile-first approach and progressive enhancement
+ */
+
+:root {
+    /* Light Theme Colors - Default color palette for the website */
+    --primary-color: #007bff;    /* Primary accent color for buttons, links, and highlights */
+    --secondary-color: #6c757d;  /* Secondary accent color for supporting elements */
+    --text-color: #333333;       /* Main text color for optimal readability */
+    --bg-color: #ffffff;         /* Page background color */
+    --section-bg: #f8f9fa;       /* Alternating section background color */
+    --border-color: #dee2e6;     /* Border color for dividers and outlines */
+    --card-bg: #ffffff;          /* Background color for card components */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color for depth effects */
+
+    /* Spacing - Consistent spacing scale for margin and padding */
+    --spacing-xs: 0.25rem;       /* Extra small spacing (4px) */
+    --spacing-sm: 0.5rem;        /* Small spacing (8px) */
+    --spacing-md: 1rem;          /* Medium spacing (16px) - Base spacing unit */
+    --spacing-lg: 2rem;          /* Large spacing (32px) */
+    --spacing-xl: 3rem;          /* Extra large spacing (48px) */
+
+    /* Layout - Container sizes and section spacing */
+    --container-width: 1200px;   /* Maximum width of content containers */
+    --section-padding: 5rem;     /* Vertical padding for page sections */
+}
+
+/* Dark Theme Colors - Applied when data-theme="dark" is set on the body */
+[data-theme="dark"] {
+    --primary-color: #66b3ff;    /* Lighter blue for better contrast on dark backgrounds */
+    --secondary-color: #9ca3af;  /* Lighter gray for better visibility */
+    --text-color: #e5e7eb;       /* Light text color for dark backgrounds */
+    --bg-color: #1a1a1a;         /* Dark page background */
+    --section-bg: #2d2d2d;       /* Slightly lighter background for alternating sections */
+    --border-color: #404040;     /* Darker borders for definition */
+    --card-bg: #333333;          /* Dark card backgrounds */
+    --shadow-color: rgba(0, 0, 0, 0.3); /* Stronger shadows for depth */
+}
+
+/* Reset & Base Styles - Normalize browser defaults and set foundational styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    transition: background 0.3s, color 0.3s;
+    box-sizing: border-box;      /* Border-box model for predictable sizing */
 }
-nav {
-    background: #333;
-    color: white;
-    padding: 15px;
-    text-align: center;
+
+html {
+    scroll-behavior: smooth;     /* Smooth scrolling for anchor links */
+    font-size: 16px;             /* Base font size for rem calculations */
 }
-nav ul {
-    list-style: none;
-    padding: 0;
+
+body {
+    font-family: 'Poppins', sans-serif; /* Primary font for the entire site */
+    line-height: 1.6;            /* Comfortable reading line height */
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for theme changes */
 }
-nav ul li {
-    display: inline;
-    margin: 0 10px;
+
+/* Typography - Text styling for headings and content */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;            /* Semi-bold headings */
+    line-height: 1.3;            /* Tighter line height for headings */
 }
-nav ul li a {
-    color: white;
-    text-decoration: none;
+
+/* Heading size hierarchy */
+h1 { font-size: 3rem; }          /* 48px - Main page title */
+h2 { font-size: 2.5rem; }        /* 40px - Section headings */
+h3 { font-size: 2rem; }          /* 32px - Sub-section headings */
+
+/* Layout - Container and section structure */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;              /* Center the container */
+    padding: 0 var(--spacing-md); /* Padding to prevent content touching edges */
 }
-section {
-    padding: 20px;
-    text-align: center;
+
+.section {
+    padding: var(--section-padding) 0; /* Vertical padding between sections */
+    background-color: var(--section-bg);
 }
-#contact-form {
+
+/* Alternating section backgrounds for visual separation */
+.section:nth-child(even) {
+    background-color: var(--bg-color);
+}
+
+/* Navigation - Header with responsive navigation */
+header {
+    position: fixed;             /* Sticky header */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 10px var(--shadow-color); /* Subtle shadow for depth */
+    z-index: 1000;               /* Ensure header stays above other content */
+}
+
+.navbar {
     display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    max-width: var(--container-width);
+    margin: 0 auto;
 }
-#contact-form input, #contact-form textarea {
-    margin: 5px 0;
-    padding: 10px;
+
+.logo {
+    font-size: 1.5rem;           /* 24px logo text */
+    font-weight: 600;            /* Semi-bold for logo */
+    color: var(--primary-color); /* Brand color for logo */
 }
-#theme-toggle {
-    background: #444;
-    color: white;
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-lg);      /* Space between nav items */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;            /* Medium weight for navigation links */
+    transition: color 0.3s;      /* Smooth hover effect */
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color); /* Highlight active and hovered links */
+}
+
+/* Buttons - Reusable button styles */
+.btn {
+    display: inline-block;
+    padding: 0.8em 1.6em;        /* Relative padding based on font size */
+    border-radius: 5px;          /* Rounded corners */
+    font-weight: 500;            /* Medium weight text */
+    text-decoration: none;
+    transition: all 0.3s;        /* Smooth hover animations */
     border: none;
-    padding: 10px;
     cursor: pointer;
 }
-.dark-mode {
-    background-color: #222;
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;                /* White text on colored background */
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color); /* Outlined button */
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Subtle lift effect on hover */
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Theme Toggle - Light/dark mode switch */
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.2rem;           /* Larger icon size */
+    padding: var(--spacing-sm);
+}
+
+/* Home Section - Hero area */
+#home {
+    height: 100vh;               /* Full viewport height */
+    display: flex;
+    align-items: center;         /* Vertically center content */
+    text-align: center;
+    padding-top: 60px;           /* Account for fixed header */
+}
+
+.greeting-wrapper {
+    margin-bottom: var(--spacing-lg);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;     /* Center the buttons */
+}
+
+/* About Section - Personal info and skills */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 1/3 for image, 2/3 for text */
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+.profile-img {
+    width: 100%;
+    border-radius: 10px;         /* Rounded corners for image */
+    box-shadow: 0 4px 12px var(--shadow-color); /* Shadow for depth */
+}
+
+/* Skills - Progress bars for skill visualization */
+.skill-bars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.skill {
+    background-color: var(--card-bg);
+    padding: var(--spacing-md);
+    border-radius: 5px;          /* Rounded card corners */
+}
+
+.skill-name {
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;            /* Medium weight for skill names */
+}
+
+.skill-bar {
+    height: 10px;                /* Height of progress bar */
+    background-color: var(--border-color);
+    border-radius: 5px;          /* Rounded progress bar */
+    overflow: hidden;            /* Contain the inner bar */
+}
+
+.skill-level {
+    height: 100%;
+    background-color: var(--primary-color); /* Colored progress indicator */
+    width: 0;                    /* Initial width, animated via JS */
+    transition: width 1s ease-in-out; /* Smooth animation of skill level */
+}
+
+/* Projects Section - Portfolio display */
+.project-filters {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    justify-content: center;     /* Center filter buttons */
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    color: var(--text-color);
+    font-weight: 500;            /* Medium weight for filter buttons */
+    transition: color 0.3s;      /* Smooth color transition */
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    color: var(--primary-color); /* Highlight active/hovered filter */
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-lg);
+}
+
+/* Blog Section - Articles and posts */
+.blog-search {
+    margin-bottom: var(--spacing-lg);
+}
+
+.blog-search input {
+    width: 100%;
+    max-width: 500px;            /* Limit search input width */
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;          /* Rounded search input */
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-lg);
+}
+
+/* Contact Form - Message submission form */
+.contact-form {
+    max-width: 600px;            /* Limit form width */
+    margin: 0 auto;              /* Center the form */
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;            /* Medium weight labels */
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;          /* Rounded form inputs */
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.form-group textarea {
+    min-height: 150px;           /* Taller text area for messages */
+    resize: vertical;            /* Allow vertical resizing only */
+}
+
+.error-message {
+    color: #dc3545;              /* Red color for error messages */
+    font-size: 0.875rem;         /* Slightly smaller error text */
+    margin-top: var(--spacing-xs);
+    display: none;               /* Hidden by default, shown via JS */
+}
+
+/* Footer - Site footer with social links */
+footer {
+    background-color: var(--section-bg);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.5rem;           /* Larger icons */
+    transition: color 0.3s;      /* Smooth hover effect */
+}
+
+.social-links a:hover {
+    color: var(--primary-color); /* Highlight on hover */
+}
+
+/* Lightbox - Modal for project image enlargement */
+.lightbox {
+    display: none;               /* Hidden by default */
+    position: fixed;             /* Full screen overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent dark background */
+    z-index: 1100;               /* Above everything else */
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox.active {
+    display: flex;               /* Shown when active */
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90vh;            /* Constrain image size */
+    border-radius: 5px;          /* Rounded image corners */
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
     color: white;
+    font-size: 2rem;             /* Large close button */
+    cursor: pointer;
+}
+
+/* Mobile Menu Button - Hamburger menu for small screens */
+.mobile-menu {
+    display: none;               /* Hidden on larger screens */
+    flex-direction: column;
+    gap: 6px;                    /* Space between hamburger lines */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+}
+
+.mobile-menu span {
+    display: block;
+    width: 25px;
+    height: 2px;                 /* Hamburger line thickness */
+    background-color: var(--text-color);
+    transition: 0.3s;            /* For animation when activated */
+}
+
+/* Animation Classes - Reusable animations */
+.fade-in {
+    opacity: 0;                  /* Start invisible */
+    transform: translateY(20px); /* Start below final position */
+    transition: opacity 0.6s, transform 0.6s; /* Smooth transition */
+}
+
+.fade-in.visible {
+    opacity: 1;                  /* End fully visible */
+    transform: translateY(0);    /* End at final position */
+}
+
+/* Slide-in animation keyframes */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%); /* Start offscreen to the left */
+        opacity: 0;              /* Start invisible */
+    }
+    to {
+        transform: translateX(0); /* End at original position */
+        opacity: 1;              /* End fully visible */
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.6s ease-out forwards; /* Apply the animation */
+}
+/*
+ * Responsive stylesheet for personal portfolio website
+ * Contains media queries for different device sizes and preferences
+ * Implements a mobile-first approach with progressive enhancement
+ * Provides accessibility accommodations for various user preferences
+ */
+
+/* Tablet Styles - For devices with screen width less than 992px (medium screens) */
+@media screen and (max-width: 992px) {
+    html {
+        font-size: 14px;         /* Reduce base font size for better readability on smaller screens */
+    }
+
+    .container {
+        padding: 0 var(--spacing-lg); /* Increase horizontal padding for better spacing */
+    }
+
+    /* About Section - Convert to single column layout on tablets */
+    .about-content {
+        grid-template-columns: 1fr; /* Stack content vertically */
+        gap: var(--spacing-lg);
+    }
+
+    .about-image {
+        max-width: 400px;        /* Limit image width */
+        margin: 0 auto;          /* Center image */
+    }
+
+    /* Projects Grid - Reduce to 2 columns for better sizing on tablets */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Blog Grid - Reduce to 2 columns to match project grid layout */
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile Styles - For devices with screen width less than 768px (small screens) */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 12px;         /* Further reduce base font size for mobile displays */
+    }
+
+    /* Navigation - Convert to mobile-friendly dropdown menu */
+    .navbar {
+        padding: var(--spacing-sm); /* Reduce padding for more space */
+    }
+
+    /* Convert horizontal nav to vertical dropdown */
+    .nav-links {
+        display: none;           /* Hidden by default until toggled */
+        position: fixed;         /* Overlay positioning */
+        top: 60px;               /* Position below header */
+        left: 0;
+        right: 0;
+        background-color: var(--bg-color);
+        flex-direction: column;  /* Stack nav items */
+        align-items: center;     /* Center align text */
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+        box-shadow: 0 4px 6px var(--shadow-color); /* Shadow for depth */
+    }
+
+    /* Show nav menu when active class is added via JS */
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Display hamburger menu button on mobile */
+    .mobile-menu {
+        display: flex;
+    }
+
+    /* Mobile Menu Animation - Create X shape when menu is active */
+    .mobile-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 6px); /* Rotate top line */
+    }
+
+    .mobile-menu.active span:nth-child(2) {
+        opacity: 0;              /* Hide middle line */
+    }
+
+    .mobile-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -5px); /* Rotate bottom line */
+    }
+
+    /* Home Section - Adjust spacing and sizing */
+    #home {
+        padding-top: 80px;       /* Increase padding to account for header */
+    }
+
+    .greeting-wrapper h1 {
+        font-size: 2.5rem;       /* Reduce headline size on mobile */
+    }
+
+    /* Convert horizontal button layout to vertical */
+    .cta-buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    /* Make buttons full width on mobile */
+    .cta-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Projects Section - Optimize for mobile viewing */
+    .project-filters {
+        flex-wrap: wrap;         /* Allow filter buttons to wrap on narrow screens */
+    }
+
+    /* Single column layout for projects on mobile */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Blog Section - Adjust layout for mobile screens */
+    .blog-grid {
+        grid-template-columns: 1fr; /* Single column for blog posts */
+    }
+
+    /* Full-width search on mobile */
+    .blog-search input {
+        max-width: 100%;
+    }
+
+    /* Contact Form - Adjust padding for mobile */
+    .contact-form {
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Footer - Stack content vertically */
+    .footer-content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+}
+
+/* Small Mobile Devices - For very narrow screens (less than 480px) */
+@media screen and (max-width: 480px) {
+    .section {
+        padding: var(--spacing-xl) 0; /* Reduce vertical padding */
+    }
+
+    /* Further reduce heading sizes for very small screens */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+
+    /* Tighten spacing between skill bars */
+    .skill-bars {
+        gap: var(--spacing-sm);
+    }
+
+    /* Adjust project filters for very small screens */
+    .project-filters {
+        gap: var(--spacing-xs);  /* Reduce spacing between filter buttons */
+    }
+
+    /* Make filter buttons smaller and more compact */
+    .filter-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.9rem;       /* Smaller text for buttons */
+    }
+}
+
+/* Print Styles - Optimize layout when printing the webpage */
+@media print {
+    /* Hide interactive elements when printing */
+    .nav-links,
+    .mobile-menu,
+    #theme-toggle,
+    .project-filters,
+    .blog-search,
+    .contact-form,
+    .social-links {
+        display: none;           /* Hide unnecessary elements when printing */
+    }
+
+    /* Ensure sections don't break across pages */
+    .section {
+        page-break-inside: avoid;
+        padding: 1rem 0;         /* Reduce spacing for print */
+    }
+
+    /* Optimize colors for print */
+    body {
+        color: #000;             /* Black text for print */
+        background: #fff;        /* White background for print */
+    }
+
+    /* Remove underlines from links when printing */
+    a {
+        text-decoration: none;
+        color: #000;             /* Black text for links when printing */
+    }
+
+    /* Maximize content width for print */
+    .container {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+}
+
+/* High Contrast Mode - Improve accessibility for users with visual impairments */
+@media (prefers-contrast: more) {
+    /* Override light theme variables for higher contrast */
+    :root {
+        --primary-color: #0056b3; /* Darker blue for better contrast */
+        --text-color: #000000;   /* Black text for maximum contrast */
+        --bg-color: #ffffff;     /* White background */
+        --section-bg: #f0f0f0;   /* Light gray sections */
+        --border-color: #000000; /* Black borders for definition */
+    }
+
+    /* Override dark theme variables for higher contrast */
+    [data-theme="dark"] {
+        --primary-color: #66b3ff; /* Brighter blue for dark mode */
+        --text-color: #ffffff;   /* White text for maximum contrast */
+        --bg-color: #000000;     /* Pure black background */
+        --section-bg: #1a1a1a;   /* Very dark sections */
+        --border-color: #ffffff; /* White borders for definition */
+    }
+}
+
+/* Reduced Motion - Support for users who prefer minimal animation */
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all animations and transitions for users who prefer reduced motion */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Disable smooth scrolling */
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    /* Disable skill bar animations */
+    .skill-level {
+        transition: none !important;
+    }
 }
